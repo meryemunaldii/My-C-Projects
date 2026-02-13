@@ -1,83 +1,3 @@
-/*#include<stdio.h>
-#include<string.h>
-#include<stdlib.h>
-#include<direct.h>
-
-#define MAX_LINE 80
-
-int main(void){
-	char input[MAX_LINE];
-	int should_run = 1;
-	char *args[10];
-	
-	while(should_run){
-		char cwd[1024];
-		if(getcwd(cwd, sizeof(cwd)) != NULL){
-			printf("Mery_Shell[%s]> ", cwd);
-		}else{
-			printf("Mery_Shell> ");
-		}
-		fflush(stdout);
-		
-		if(fgets(input, MAX_LINE, stdin) == NULL) break;
-		input[strcspn(input, "\n")] = 0;
-		
-		char *token;
-int i =0;
-
-token = strtok(input, " ");
-while(token != NULL){
-	args[i] = token;
-	i++;
-	token = strtok(NULL, " ");
-}
-args[i] = NULL;
-	if(i>0){
-
-		if(strcmp(input, "exit")==0){
-			should_run =0;
-			continue;
-		}
-		if(strlen(input)>0){
-			if(strcmp(args[0], "hakkinda") ==0){
-				printf("\n-- Mery_Shell Info--\n");
-				printf("Developer: Meryem Ünaldý\n");
-				printf("Bu shell projesi C dili ile sistem programlama temellerini ogrenmek icin yapilmistir.\n\n");
-			} 
-			else if(strcmp(args[0], "topla") == 0){
-				if(args[1] != NULL && args[2] != NULL){
-					int sayi1 = atoi(args[1]);
-					int sayi2 = atoi(args[2]);
-					printf("Sonuc: %d\n",sayi1 + sayi2);
-				}else{
-					printf("Hata: Lütfen iki sayi girin.(Ornek topla 5 10)\n");
-				}
-			}
-			else if(strcmp(args[0],"cd") == 0){
-				if(args[1] == NULL){
-					printf("Hata: Gitmek istediginiz dizini belirtin.\n");
-				}else{
-					if(chdir(args[1])!=0){
-						perror("Mery_Shell Hata");
-					}else{
-						printf("Dizin degistirildi.\n");
-					}
-				}
-			}
-		else{
-			system(input);
-		}		
-	}
-		if(strlen(input)>0){
-			printf("Komut yurutuluyor...\n");
-			system(input);
-		}
-	}
-	}
-	return 0;
-}
-*/
-
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -102,7 +22,7 @@ int main(void) {
         if (fgets(input, MAX_LINE, stdin) == NULL) break;
         input[strcspn(input, "\n")] = 0;
 
-        // --- DÜZELTME: Parçalama iþlemi tam burada, karþýlaþtýrmadan önce olmalý ---
+        // --- DÃœZELTME: ParÃ§alama iÃ¾lemi tam burada, karÃ¾Ã½laÃ¾tÃ½rmadan Ã¶nce olmalÃ½ ---
         int i = 0;
         char *token = strtok(input, " ");
         while (token != NULL && i < 9) {
@@ -110,17 +30,17 @@ int main(void) {
             i++;
             token = strtok(NULL, " ");
         }
-        args[i] = NULL; // Dizinin sonunu iþaretle
+        args[i] = NULL; // Dizinin sonunu iÃ¾aretle
 
-        if (i > 0) { // Eðer kullanýcý bir þey yazdýysa
+        if (i > 0) { // EÃ°er kullanÃ½cÃ½ bir Ã¾ey yazdÃ½ysa
             
-            // 1. Çýkýþ kontrolü
+            // 1. Ã‡Ã½kÃ½Ã¾ kontrolÃ¼
             if (strcmp(args[0], "exit") == 0) {
                 should_run = 0;
                 continue;
             }
             
-            // 2. Hakkýnda komutu
+            // 2. HakkÃ½nda komutu
             if (strcmp(args[0], "hakkinda") == 0) {
                 printf("\n-- Mery_Shell Info --\n");
                 printf("Developer: Meryem Unaldi\n");
@@ -148,7 +68,7 @@ int main(void) {
                     }
                 }
             }
-            // 5. Bilinmeyen komutlarý sisteme gönder
+            // 5. Bilinmeyen komutlarÃ½ sisteme gÃ¶nder
             else {
                 system(input);
             }
@@ -157,3 +77,4 @@ int main(void) {
 
     return 0;
 }
+
